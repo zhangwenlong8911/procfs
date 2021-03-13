@@ -27,6 +27,13 @@ jobs:
     - checkout
     - << parameters.command >>
 
+  build-tags:
+    docker:
+    - image: cimg/go
+
+    steps:
+    - run: ./scripts/check_build_tags.sh
+
   codespell:
     docker:
     - image: circleci/python
@@ -60,4 +67,5 @@ workflows:
         name: windows-1-14
         os: windows
         go_version: "1.14"
+    - build-tags
     - codespell
